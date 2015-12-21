@@ -1,41 +1,41 @@
 # Jekyll Social
-> Select what social media platforms to share your Jekyll blog posts on, right from the front matter.
+> Sélectionner les plates-formes de médias sociaux sur lesquelles vous voulez partager vos posts de blog Jekyll, directement à partir du front matter.
 
-## The idea
-If you're the author of a blog, you probably want to share your posts with as many people as possible and you're probably using social media platforms to do that. Instead of doing that manually, you can take advantage of services like [IFTTT](https://ifttt.com/) to automate the process, especially since Jekyll ships with a RSS feed file you can use to communicate with third-parties.
+## L'idée
+Si vous êtes auteur d'un blog, vous voudrez probablement partager vos posts avec autant de personnes que possible et vous utiliserez probablement les plates-formes de médias sociaux pour faire ça. Au lieu de faire ça à la main, vous pouvez tirer profit des services comme [IFTTT](https://ifttt.com/) pour automatiser ce processus, tout spécialement depuis que Jekyll est livré avec un flux RSS que vous pouvez utiliser pour communiquer avec des tiers.
 
-But sometimes you want to share each post on a different set of platforms, and that's where **Jekyll Social** comes handy. It generates a feed for each social platform based on the information you include on the front matter of a post.
+Mais parfois vous voulez partager chaque post sur un ensemble différent de plates-formes, et c'est là où  **Jekyll Social** devient commode. Il génère un flux pour chaque plate-forme social en se basant sur l'information que vous insérez sur le front matter d'un post.
 
-### Example
-Let's say that you want to share *post 1* on Facebook, *post 2* on Twitter and LinkedIn. You include the following in the posts' front matter:
+### Exemple
+Disons que vous voulez le *post 1* sur Facebook, le *post 2* sur  Twitter et LinkedIn. Vous insérez ce qui suit dans le front matter du post : 
 
 - *post 1*: `share: facebook`
 - *post 2*: `share: twitter linkedin`
 
-If you don't want to share a post at all, simply don't include the `share` property.
+Si vous ne voulez pas partager un post, n'incluez pas la propriété `share`.
 
-## How it works
-Instead of serving the same feed file to all different IFTTT channels, **Jekyll Social** creates an individual feed for each social platform which you can then serve its respective IFTTT channel. You can select which posts go into each feed by specifying the `share` property in the post front matter.
+## Comment ça marche
+Au lieu de servir le même fichier de flux sur tous les canaux différents IFTTT, **Jekyll Social** crée un flux individuel pour chaque plate-forme sociale pour laquelle vous pourrez ensuite servir son canal respectif IFTTT. Vous pouvez sélectionner les posts qui iront dans chaque flux en spécifiant la propriété `share` dans le front matter du post.
 
-### Using your normal feed with IFTTT
-![Before Jekyll Social](https://eduardoboucas.com/assets/posts/2015-04-28-sharing-jekyll-posts-on-social-media-using-front-matter-and-ifttt/jekyll-social-before.png)
+### Utiliser votre flux normal avec IFTTT
+![Avant Jekyll Social](https://eduardoboucas.com/assets/posts/2015-04-28-sharing-jekyll-posts-on-social-media-using-front-matter-and-ifttt/jekyll-social-before.png)
 
-### Using Jekyll Social with IFTTT
-![After Jekyll Social](https://eduardoboucas.com/assets/posts/2015-04-28-sharing-jekyll-posts-on-social-media-using-front-matter-and-ifttt/jekyll-social-after.png)
+### Utiliser Jekyll Social avec IFTTT
+![Après Jekyll Social](https://eduardoboucas.com/assets/posts/2015-04-28-sharing-jekyll-posts-on-social-media-using-front-matter-and-ifttt/jekyll-social-after.png)
 
-## How to use
-Check [this blog post](https://eduardoboucas.com/blog/2015/04/28/sharing-jekyll-posts-on-social-media-using-front-matter-and-ifttt.html) for detailed information about the implementation and how to set everything up.
+## Comment l'utiliser 
+Regardez [ce post de blog](https://eduardoboucas.com/blog/2015/04/28/sharing-jekyll-posts-on-social-media-using-front-matter-and-ifttt.html) pour de l'information détaillée sur l'implémentation et comment régler l'ensemble.
 
-## Custom formats
-By default, all the social media platforms share the same layout in **Jekyll Social**, but it's possible to create a custom behavior for individual platforms. 
+## Formats personnalisés
+Par défaut, toutes les plates-formes de médias sociaux partagent le même layout dans **Jekyll Social**, mais il est possible de créer un comportement personnalisé pour certaines plates-formes. 
 
-### Twitter and hashtags
-For example, we include a feed format specific for Twitter which has the ability to grab post tags and add them as hashtags in a tweet. The [_config.yml](https://github.com/eduardoboucas/jekyll-social/blob/master/_config.yml) included in this repo contains 3 variables the plugin will use to form your tweets:
+### Twitter et hashtags
+Par exemple, nous incluons un format de flux spécifique à Twitter qui a la possibilité de saisir les tags de posts et de les ajouter sous forme de hashtags dans un tweet. Le fichier  [_config.yml](https://github.com/ChristopheDucamp/jekyll-social/blob/master/_config.yml) inclus dans ce repo contient 3 variables que le plugin utilisera pour former vos tweets :
 
-- `twitter_format`: The format for the tweets. The placeholders `@title`, `@url` and `@tags` tags will be automatically replaced with the post's title, url and tags (as hashtags), respectively. You can add custom text like *Blog post:*.
-- `twitter_url_length`: The amount of characters used by Twitter to encode an URL. You shouldn't need to change the default value, unless Twitter changes their platform.
-- `twitter_max_length`: The maximum length of a tweet. It is currently 140 characters and I doubt it will ever change, but you never know!
+- `twitter_format` : Le format pour les tweets. Les balises  placeholders `@title`, `@url` et `@tags` seront remplacées automatiquement et respectivement par le titre du post, l'url et les tags (sous forme de hashtags). Vous pouvez ajouter du texte personnalisé comme *Blog post :*.
+- `twitter_url_length` : Le nombre de caractères utilisé par Twitter pour encoder une URL. Vous ne devriez pas changer la valeur par défaut, à moins que Twitter ne change sa plateforme.
+- `twitter_max_length` : La longueur maximum d'un tweet. Elle est actuellement de 140 caractères et je doute que cela changera, mais on ne sait jamais ! 
 
-If you want to use hashtags in a post, you'll have to include `twitter--hashtags` in the `share` property of the front matter. **NOTE:** You'll still need the `twitter` identifier as well, so you would have something like `share: twitter twitter--hashtags`.
+Si vous voulez utiliser les hashtags dans un post, vous devrez insérer `twitter--hashtags` dans la propriété  `share` du front matter. **NOTE :** Vous aurez encore besoin de l'identifiant `twitter`, par conséquent vous devriez avoir quelque chose qui ressemble à  `share: twitter twitter--hashtags`.
 
-If you opt for using this custom layout, you will have to configure your IFTTT trigger to just use the `{{EntryTitle}}` ingredient, as the post title, tags and URL will all be fitted into the title field in the feed.
+Si vous optez pour utiliser ce layout personnalisé, vous devrez configurer votre trigger IFTTT pour utiliser simplement l'ingrédient `{{EntryTitle}}`, comme titre du post. Les tags et URLs seront tous inclus dans le champ title du flux.
